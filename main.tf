@@ -33,7 +33,7 @@ resource "aws_security_group" "audi_sg" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = [var.admin_cidr]
   }
 
   # Entrada: HTTP (Web estándar)
@@ -49,7 +49,7 @@ resource "aws_security_group" "audi_sg" {
     from_port   = 5678
     to_port     = 5678
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = [var.admin_cidr]
   }
 
   # Salida: Internet libre (para bajar actualizaciones)
