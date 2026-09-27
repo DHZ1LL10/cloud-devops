@@ -49,17 +49,19 @@ Este repositorio contiene todo lo necesario para levantar la infraestructura en 
     ```bash
     terraform init
     ```
-3.  **Revisar el plan y desplegar:**
+3.  **Definir tu CIDR administrativo y desplegar:**
     ```bash
-    terraform apply
+    terraform apply -var="admin_cidr=TU_IP_PUBLICA/32"
     ```
+    Usa únicamente tu IP pública (o un rango de confianza) para SSH y el panel de n8n. Evita abrir los puertos 22 y 5678 a `0.0.0.0/0`.
+
     *(Escribe `yes` cuando se te solicite).*
 
 Al finalizar, Terraform te entregara la IP publica del servidor y el comando SSH para conectarte.
 
 ## Como Probar el Sistema (Simulacion)
 
-Una vez que el servidor este corriendo y n8n configurado, puedes simular los sensores del vehiculo enviando peticiones HTTP desde tu terminal.
+Una vez que el servidor esté corriendo y n8n configurado, puedes simular los sensores del vehículo enviando peticiones HTTP desde una red autorizada. El acceso administrativo a n8n está restringido por `admin_cidr`.
 
 **Reemplaza `TU_IP_PUBLICA` con la IP que te entrego Terraform.**
 
