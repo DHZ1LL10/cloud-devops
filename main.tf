@@ -18,9 +18,10 @@ resource "aws_key_pair" "generated_key" {
 
 # 3. Guardamos la llave privada en tu PC (tu copia de la llave)
 # OJO: Se creará un archivo llamado "audi-key.pem" en tu carpeta
-resource "local_file" "private_key" {
-  content  = tls_private_key.audi_key.private_key_pem
-  filename = "audi-key.pem"
+resource "local_sensitive_file" "private_key" {
+  content         = tls_private_key.audi_key.private_key_pem
+  filename        = "audi-key.pem"
+  file_permission = "0600"
 }
 
 # --- SEGURIDAD (El Garage) ---
